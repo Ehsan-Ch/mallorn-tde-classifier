@@ -11,3 +11,5 @@ catboost_info/
 submission*.csv
 .env
 kaggle.json
+tmp*/
+mallorn_synthetic*/
