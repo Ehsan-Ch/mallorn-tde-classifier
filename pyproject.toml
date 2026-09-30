@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mallorn-tde-classifier"
+version = "0.1.0"
+description = "Reproducible MALLORN light-curve classification with nested F1 threshold selection"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy==2.3.5", "pandas==2.2.3", "scipy==1.17.0", "scikit-learn==1.8.0",
+  "catboost==1.2.8", "lightgbm==4.6.0", "extinction==0.4.8",
+  "matplotlib==3.10.8", "joblib==1.5.3"
+]
+
+[project.scripts]
+mallorn = "mallorn.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
