@@ -1,0 +1,23 @@
+{
+  "scope": "Post-evaluation diagnostic only; SpecType never enters features or selection",
+  "classes": [
+    {
+      "class": "AGN",
+      "objects": 1786,
+      "predicted_TDE": 47,
+      "missed_TDE": 0
+    },
+    {
+      "class": "Other transient",
+      "objects": 1109,
+      "predicted_TDE": 66,
+      "missed_TDE": 0
+    },
+    {
+      "class": "TDE",
+      "objects": 148,
+      "predicted_TDE": 93,
+      "missed_TDE": 55
+    }
+  ]
+}

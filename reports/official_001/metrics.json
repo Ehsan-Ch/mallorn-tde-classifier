@@ -1,0 +1,153 @@
+{
+  "validation": "Nested cross-validation; model and threshold selected inside outer training folds",
+  "config": {
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "iterations": 500,
+    "seed": 42,
+    "threads": 2,
+    "backend": "lightgbm"
+  },
+  "grouping": "object_only",
+  "primary": {
+    "n": 3043,
+    "positives": 148,
+    "predicted_positives": 206,
+    "f1": 0.5254237288135594,
+    "precision": 0.45145631067961167,
+    "recall": 0.6283783783783784,
+    "average_precision": 0.5439630101980881,
+    "roc_auc": 0.9519231666900061,
+    "confusion_matrix_tn_fp_fn_tp": [
+      2782,
+      113,
+      55,
+      93
+    ]
+  },
+  "candidate_outer_metrics": {
+    "prior": {
+      "n": 3043,
+      "positives": 148,
+      "predicted_positives": 3043,
+      "f1": 0.09276089000313381,
+      "precision": 0.04863621426224121,
+      "recall": 1.0,
+      "average_precision": 0.048268288189342985,
+      "roc_auc": 0.495945945945946,
+      "confusion_matrix_tn_fp_fn_tp": [
+        0,
+        2895,
+        0,
+        148
+      ]
+    },
+    "lgb_basic": {
+      "n": 3043,
+      "positives": 148,
+      "predicted_positives": 187,
+      "f1": 0.5253731343283582,
+      "precision": 0.47058823529411764,
+      "recall": 0.5945945945945946,
+      "average_precision": 0.4563454936146167,
+      "roc_auc": 0.9347967138122579,
+      "confusion_matrix_tn_fp_fn_tp": [
+        2796,
+        99,
+        60,
+        88
+      ]
+    },
+    "lgb_full": {
+      "n": 3043,
+      "positives": 148,
+      "predicted_positives": 206,
+      "f1": 0.5254237288135594,
+      "precision": 0.45145631067961167,
+      "recall": 0.6283783783783784,
+      "average_precision": 0.5439630101980881,
+      "roc_auc": 0.9519231666900061,
+      "confusion_matrix_tn_fp_fn_tp": [
+        2782,
+        113,
+        55,
+        93
+      ]
+    }
+  },
+  "baselines": {
+    "all_negative": {
+      "n": 3043,
+      "positives": 148,
+      "predicted_positives": 0,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "average_precision": 0.04863621426224121,
+      "roc_auc": 0.5,
+      "confusion_matrix_tn_fp_fn_tp": [
+        2895,
+        0,
+        148,
+        0
+      ]
+    },
+    "all_positive": {
+      "n": 3043,
+      "positives": 148,
+      "predicted_positives": 3043,
+      "f1": 0.09276089000313381,
+      "precision": 0.04863621426224121,
+      "recall": 1.0,
+      "average_precision": 0.04863621426224121,
+      "roc_auc": 0.5,
+      "confusion_matrix_tn_fp_fn_tp": [
+        0,
+        2895,
+        0,
+        148
+      ]
+    }
+  },
+  "deployment": {
+    "candidate": "lgb_full",
+    "threshold": 0.05066200694440014,
+    "tuning_f1": 0.5649717514124294,
+    "tuning_f1_is_performance_estimate": false
+  },
+  "data_kind": "user_supplied_mallorn_format",
+  "generated_at_utc": "2026-10-01T04:55:21.975375+00:00",
+  "feature_count": 414,
+  "feature_config": {
+    "deredden": true,
+    "max_color_gap_days": 60.0,
+    "min_color_snr": 2.0,
+    "wavelengths_angstrom": {
+      "u": 3670.0,
+      "g": 4825.0,
+      "r": 6222.0,
+      "i": 7545.0,
+      "z": 8691.0,
+      "y": 9710.0
+    },
+    "extinction_law": "Fitzpatrick99; Rv=3.1; monochromatic approximation",
+    "redshift_policy": "Preserve input Z; floor negative noisy estimates to zero for all features; exclude Z_err"
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0",
+    "catboost": "1.2.8",
+    "lightgbm": "4.6.0",
+    "extinction": "0.4.8",
+    "joblib": "1.5.3"
+  },
+  "conditional_f1_interval": {
+    "ci95_low": 0.46394748272085207,
+    "ci95_high": 0.5892397656645806,
+    "repeats": 1000,
+    "unit": "object",
+    "scope": "Conditional on fixed OOF decisions; ignores model refitting and protocol selection uncertainty"
+  }
+}

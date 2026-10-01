@@ -4,8 +4,14 @@
 
 A reproducible Python pipeline inspired by the published second- and third-place MALLORN solutions: domain-informed light-curve features, gradient-boosted trees, and F1 threshold selection. The default compares basic and full LightGBM feature sets under nested validation. An optional hybrid backend adds CatBoost and a fixed blend.
 
-> **Status: implemented and software-tested; competition-data evaluation pending.**
-> Kaggle requires sign-in and acceptance of the competition rules to access the dataset. No MALLORN training score, leaderboard score, or improvement over the winners is claimed. Synthetic fixtures test the software only.
+> **Measured on the official dataset: nested local F1 0.5254.**
+> Trained and evaluated on 3,043 labelled objects, with 148 TDEs. Generated and verified predictions for 7,135 test objects. No Kaggle submission or leaderboard score is claimed.
+
+| F1 | Precision | Recall | Validation |
+| ---: | ---: | ---: | --- |
+| **0.5254** | 0.4515 | 0.6284 | 5 outer × 3 inner folds; model and threshold chosen inside training folds |
+
+[**Read the experiment results →**](reports/official_001/RESULTS.md)
 
 [Methodology](docs/METHODOLOGY.md) · [Data setup](docs/DATA.md) · [Leading-solution references](docs/SOURCES.md) · [Verification status](reports/STATUS.md)
 
@@ -82,7 +88,7 @@ The smoke run generates explicitly invented curves in a temporary directory. Its
 
 The primary score is the **outer nested F1**. The threshold selected from all out-of-fold predictions for the final model is a deployment tuning step; its best tuning F1 is not an unbiased performance estimate. Even valid local F1 cannot establish that this model beats a private Kaggle leaderboard score.
 
-## Limits to resolve with the data
+## Remaining limitations
 
 - MALLORN curves are simulated from real source observations. Related simulations may cross object-level folds unless genuine source-template groups are supplied with `--groups`.
 - Training redshifts are spectroscopic; test redshifts are photometric. `Z_err` is excluded, but the remaining measurement shift still needs evaluation.
@@ -93,4 +99,4 @@ The primary score is the **outer nested F1**. The threshold selected from all ou
 
 Created with **OpenAI Codex assistance for Ehsan Cheraghi**. The package is independently written, with methodology references credited in [SOURCES.md](docs/SOURCES.md). It is a portfolio research project, not a claim of Kaggle participation or placement.
 
-Code: [MIT](LICENSE). Competition data remain subject to [Kaggle's competition rules](https://www.kaggle.com/competitions/mallorn-astronomical-classification-challenge/rules); they, trained models and per-object outputs are excluded from this repository. No raw or derived competitor dataset has been copied into the project.
+Code: [MIT](LICENSE). Competition data remain subject to [Kaggle's competition rules](https://www.kaggle.com/competitions/mallorn-astronomical-classification-challenge/rules); they, trained models and per-object outputs are excluded from this repository. Only aggregate experiment evidence and hashes are published; raw observations, per-object features and predictions remain outside the public repository.

@@ -1,0 +1,91 @@
+{
+  "archive_sha256": "bce61f4a93f69566fb9e05abb25676fd01137415cacb28ef3ef2d0373bb2a7c5",
+  "files": 43,
+  "train_objects": 3043,
+  "test_objects": 7135,
+  "positive_objects": 148,
+  "positive_fraction": 0.04863621426224121,
+  "photometry_rows": 1621596,
+  "cleaning": {
+    "train": {
+      "input_rows": 479384,
+      "missing_flux_rows_removed": 891,
+      "retained_rows": 478493,
+      "negative_redshifts_floored_in_features": 0
+    },
+    "test": {
+      "input_rows": 1145125,
+      "missing_flux_rows_removed": 2022,
+      "retained_rows": 1143103,
+      "negative_redshifts_floored_in_features": 1
+    }
+  },
+  "band_counts": {
+    "r": 372282,
+    "i": 371104,
+    "z": 330628,
+    "y": 238820,
+    "g": 167574,
+    "u": 141188
+  },
+  "observations_per_object": {
+    "count": 10178.0,
+    "mean": 159.32363922185104,
+    "std": 116.54793536283435,
+    "min": 15.0,
+    "25%": 125.0,
+    "50%": 151.0,
+    "75%": 168.0,
+    "max": 1186.0
+  },
+  "negative_flux_fraction": 0.3769779895855688,
+  "redshift": {
+    "train": {
+      "summary": {
+        "count": 3043.0,
+        "mean": 0.6706740883996056,
+        "std": 0.5392685566429827,
+        "min": 0.008771,
+        "25%": 0.31775,
+        "50%": 0.4818,
+        "75%": 0.8835500000000001,
+        "max": 4.924
+      },
+      "negative_count": 0,
+      "error_missing_fraction": 1.0
+    },
+    "test": {
+      "summary": {
+        "count": 7135.0,
+        "mean": 0.6718339369306237,
+        "std": 0.5523500982641214,
+        "min": -0.01751,
+        "25%": 0.31705,
+        "50%": 0.4842,
+        "75%": 0.8699,
+        "max": 4.935
+      },
+      "negative_count": 1,
+      "error_missing_fraction": 0.0
+    }
+  },
+  "train_class_counts": {
+    "AGN": 1786,
+    "SN Ia": 790,
+    "SN II": 163,
+    "TDE": 148,
+    "SN IIn": 41,
+    "SN Ic": 21,
+    "SN Ia-91T-like": 17,
+    "SLSN-I": 15,
+    "SN Ic-BL": 12,
+    "SLSN-II": 10,
+    "SN Ib": 9,
+    "SN Ia-pec": 8,
+    "SN IIb": 8,
+    "SN IIP": 6,
+    "SN Iax[02cx-like]": 5,
+    "SN Ia-91bg-like": 4
+  },
+  "source_group_mapping_available": false
+}

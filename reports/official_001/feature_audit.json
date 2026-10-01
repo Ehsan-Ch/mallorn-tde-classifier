@@ -1,0 +1,84 @@
+{
+  "feature_count": 414,
+  "train_all_missing_columns": [],
+  "test_all_missing_columns": [],
+  "train_overall_missing_fraction": 0.3382650607000148,
+  "test_overall_missing_fraction": 0.3378033711478762,
+  "largest_absolute_missingness_shifts": [
+    {
+      "feature": "u__phase5_mean_norm",
+      "train": 0.6102530397633914,
+      "test": 0.6364400840925017
+    },
+    {
+      "feature": "u__phase5_snr_mean",
+      "train": 0.6102530397633914,
+      "test": 0.6364400840925017
+    },
+    {
+      "feature": "r__phase1_mean_norm",
+      "train": 0.5264541570818272,
+      "test": 0.547302032235459
+    },
+    {
+      "feature": "r__phase1_snr_mean",
+      "train": 0.5264541570818272,
+      "test": 0.547302032235459
+    },
+    {
+      "feature": "color_r_i__p0",
+      "train": 0.4065067367729215,
+      "test": 0.38654519971969165
+    },
+    {
+      "feature": "r__phase3_mean_norm",
+      "train": 0.5773907328294446,
+      "test": 0.5592151366503153
+    },
+    {
+      "feature": "r__phase3_snr_mean",
+      "train": 0.5773907328294446,
+      "test": 0.5592151366503153
+    },
+    {
+      "feature": "y__phase2_mean_norm",
+      "train": 0.5353269799539928,
+      "test": 0.551927119831815
+    },
+    {
+      "feature": "y__phase2_snr_mean",
+      "train": 0.5353269799539928,
+      "test": 0.551927119831815
+    },
+    {
+      "feature": "color_i_z__p0",
+      "train": 0.6299704239237595,
+      "test": 0.613875262789068
+    },
+    {
+      "feature": "i__phase3_mean_norm",
+      "train": 0.5471574104502136,
+      "test": 0.5323055360896987
+    },
+    {
+      "feature": "i__phase3_snr_mean",
+      "train": 0.5471574104502136,
+      "test": 0.5323055360896987
+    },
+    {
+      "feature": "color_i_z__p-10",
+      "train": 0.7762076897798226,
+      "test": 0.7615977575332866
+    },
+    {
+      "feature": "y__phase3_mean_norm",
+      "train": 0.7081827144265528,
+      "test": 0.7216538192011213
+    },
+    {
+      "feature": "y__phase3_snr_mean",
+      "train": 0.7081827144265528,
+      "test": 0.7216538192011213
+    }
+  ]
+}

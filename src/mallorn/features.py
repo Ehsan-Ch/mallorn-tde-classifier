@@ -31,7 +31,7 @@ class FeatureConfig:
     def metadata(self) -> dict:
         return {**asdict(self), "wavelengths_angstrom": WAVELENGTHS,
                 "extinction_law": "Fitzpatrick99; Rv=3.1; monochromatic approximation",
-                "redshift_policy": "Use supplied Z; exclude Z_err due train/test missingness shift"}
+                "redshift_policy": "Preserve input Z; floor negative noisy estimates to zero for all features; exclude Z_err"}
 
 
 def dust_scale(ebv: float, band: str) -> float:
@@ -125,8 +125,12 @@ def extract_features(log: pd.DataFrame, photo: pd.DataFrame, config: FeatureConf
     for object_id, lc in photo.groupby("object_id", sort=True):
         row = metadata.loc[object_id]
         z, ebv = float(row.Z), float(row.EBV)
-        if not np.isfinite([z, ebv]).all() or min(z, ebv) < 0:
+        if not np.isfinite([z, ebv]).all() or z <= -1 or ebv < 0:
             raise ValueError("Invalid redshift/extinction")
+        # The official test log includes a slightly negative photometric estimate.
+        # Keep the raw file unchanged; apply the same fixed physical floor to
+        # metadata features, rest-frame timing and colours for every object.
+        z = max(z, 0.0)
         bands = {}
         for band in BANDS:
             g = lc.loc[lc.Filter.eq(band)].sort_values("Time (MJD)")

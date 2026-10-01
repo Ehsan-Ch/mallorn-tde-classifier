@@ -6,15 +6,17 @@ Open the [official data page](https://www.kaggle.com/competitions/mallorn-astron
 
 Extract the archive so `train_log.csv`, `test_log.csv` and `sample_submission.csv` are directly inside `data/mallorn/`. The light-curve files may be in the official `split_01` through `split_20` folders; the loader discovers them recursively. Each folder contains `train_full_lightcurves.csv` and `test_full_lightcurves.csv`. A `split` field, if present in metadata, must match the parent folder name exactly.
 
-The loader deliberately fails on missing files, unknown filters, duplicate observations, nonfinite values, nonpositive errors, overlapping train/test IDs and inconsistent object coverage. It retains negative flux: a measurement below the reference baseline is valid.
+The loader deliberately fails on missing files, unknown filters, duplicate observations, infinite flux, nonfinite times/errors, nonpositive errors, overlapping train/test IDs and inconsistent object coverage. Official observations with missing flux are omitted and counted by train/test partition in the manifest; no flux is imputed. Every metadata object must still have observations. Negative measured flux is retained.
+
+The supplied archive contains one slightly negative test photometric redshift (`-0.01751`). Raw files and metadata remain unchanged. Feature extraction uses `max(Z, 0)` consistently for redshift features, rest-frame time and colour queries. The same fixed rule applies to train and test, requires no fitting, and was introduced before model evaluation. Z must be finite and greater than -1; EBV must be finite and nonnegative.
 
 ## Input schema
 
 | File | Required columns | Treatment |
 | --- | --- | --- |
-| `train_log.csv` | `object_id`, `Z`, `EBV`, `target` | Binary target; nonnegative finite Z and EBV |
+| `train_log.csv` | `object_id`, `Z`, `EBV`, `target` | Binary target; finite Z > -1 and EBV >= 0; negative Z floored only in features |
 | `test_log.csv` | `object_id`, `Z`, `EBV` | No target used |
-| Light curves | `object_id`, `Time (MJD)`, `Flux`, `Flux_err`, `Filter` | Times in days, flux/errors in microjansky; filters u,g,r,i,z,y |
+| Light curves | `object_id`, `Time (MJD)`, `Flux`, `Flux_err`, `Filter` | Times in days, flux/errors in microjansky; filters u,g,r,i,z,y; missing flux observations omitted and audited |
 | `sample_submission.csv` | `object_id`, `prediction` | All test IDs exactly once; original order preserved |
 | Optional group file | `object_id`, `group_id` | Exactly one genuine source-template identifier per training object |
 
@@ -50,9 +52,10 @@ For PowerShell, set `$env:MALLORN_TEST_CATBOOST='1'` before the test command. Th
 ```bash
 mallorn check-submission --submission artifacts/run_001/submission.csv --test-log data/mallorn/test_log.csv
 mallorn predict --data data/mallorn --model artifacts/run_001/model.joblib --output artifacts/replayed_submission.csv
+python scripts/verify_run.py --data data/mallorn --run artifacts/run_001
 ```
 
-`predict` reuses the saved feature configuration and does not fit a model. The current loader expects the original dataset layout, including training logs, for its object-coverage contract. Only test rows are sent to the saved estimator. `joblib` uses pickle: load only artifacts you produced and trust.
+`verify_run.py` checks input hashes, fold boundaries, held-out labels/F1, saved-model replay from the hashed feature table, and exact submission order/decisions. It writes `verification.json`. `predict` reuses the saved feature configuration and does not fit a model. The current loader expects the original dataset layout, including training logs, for its object-coverage contract. Only test rows are sent to the saved estimator. `joblib` uses pickle: load only artifacts you produced and trust.
 
 There is no Kaggle submission call, credential handling, automatic rule acceptance, or notebook publication in the package. Local outputs stay under the git-ignored `artifacts/` directory.
 

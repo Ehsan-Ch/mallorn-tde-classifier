@@ -60,6 +60,20 @@ class IntegrityTests(unittest.TestCase):
     def test_target_not_required_for_test_log(self):
         validate_log(self.test,False)
 
+    def test_negative_photometric_redshift_preserved_and_features_floored(self):
+        meta=self.test.iloc[[0]].copy();meta['Z']=-0.01751
+        validated=validate_log(meta,False)
+        self.assertEqual(validated.Z.iloc[0],-0.01751)
+        photo=self.photo[self.photo.object_id.eq(meta.object_id.iloc[0])]
+        negative=extract_features(validated,photo)
+        meta['Z']=0.
+        assert_frame_equal(negative,extract_features(meta,photo))
+
+    def test_nonfinite_redshift_and_negative_extinction_rejected(self):
+        for col,value in [('Z',np.nan),('Z',np.inf),('EBV',-.01)]:
+            bad=self.test.copy();bad.loc[0,col]=value
+            with self.assertRaises(ValueError):validate_log(bad,False)
+
     def test_duplicate_photometry_rejected(self):
         with self.assertRaisesRegex(ValueError,'Duplicate'):
             validate_photometry(pd.concat([self.photo,self.photo.iloc[[0]]]))
@@ -71,6 +85,22 @@ class IntegrityTests(unittest.TestCase):
     def test_nonfinite_flux_rejected(self):
         bad=self.photo.copy();bad.loc[0,'Flux']=np.inf
         with self.assertRaises(ValueError):validate_photometry(bad)
+
+    def test_missing_flux_removed_without_imputing(self):
+        raw=self.photo.iloc[:20].copy();raw.iloc[0,raw.columns.get_loc('Flux')]=np.nan
+        clean=validate_photometry(raw)
+        self.assertEqual(len(clean),19)
+        self.assertFalse(clean.Flux.isna().any())
+        with self.assertRaises(ValueError):validate_photometry(raw.assign(Flux=np.nan))
+
+    def test_missing_flux_counts_audited_by_loader(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);make_fixture(root,train_count=48,test_count=8)
+            path=next(root.rglob('train_full_lightcurves.csv'))
+            raw=pd.read_csv(path);raw.loc[0,'Flux']=np.nan;raw.to_csv(path,index=False)
+            train,_,_,manifest=load_dataset(root)
+            self.assertEqual(len(train),48)
+            self.assertEqual(manifest['cleaning']['train']['missing_flux_rows_removed'],1)
 
     def test_unknown_filter_rejected(self):
         bad=self.photo.copy();bad.loc[0,'Filter']='X'

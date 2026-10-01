@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "train_objects": 3043,
+  "test_objects": 7135,
+  "outer_folds": 5,
+  "input_hashes_verified": 43,
+  "feature_matrix_hash_verified": true,
+  "fold_partitions_verified": true,
+  "oof_labels_and_f1_verified": true,
+  "saved_model_replay_verified": true,
+  "submission_ids_order_and_decisions_verified": true,
+  "test_predicted_positives": 496,
+  "submission_sha256": "6782984249bbde18243fc7b4187d5a6f465642bab466c5353fc37897a97e613e"
+}

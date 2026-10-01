@@ -4,9 +4,9 @@ This repository was created with OpenAI Codex assistance. Run it, inspect the te
 
 ## One-minute explanation
 
-“This project builds a reproducible classifier for rare astronomical tidal disruption events from irregular light curves. It uses features inspired by published leading MALLORN solutions and compares boosted-tree models. I focused on separating feature engineering, model selection, threshold tuning and evaluation, because optimizing F1 on the same predictions used to report performance can give an optimistic result. The code exports every fold and prediction so the experiment can be audited. Competition-data training is still pending access; the existing tests verify software behaviour and are not evidence of astronomical accuracy.”
+“This project builds a reproducible classifier for rare astronomical tidal disruption events from irregular light curves. It uses features inspired by published leading MALLORN solutions and compares boosted-tree models. I focused on separating feature engineering, model selection, threshold tuning and evaluation, because optimizing F1 on the same predictions used to report performance can give an optimistic result. The code exports every fold and prediction so the experiment can be audited. On the official data, the fixed nested object-level evaluation achieved F1 0.5254, precision 0.4515 and recall 0.6284. Source-template independence is unresolved, and no Kaggle leaderboard score has been measured.”
 
-Update the final sentence only after an actual data run has been measured and reviewed.
+The measured result and limitations are recorded in [the experiment report](../reports/official_001/RESULTS.md).
 
 ## Decisions to understand
 

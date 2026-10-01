@@ -1,12 +1,14 @@
 # Experiment protocol
 
-Written before any competition-data training run. The current task is binary full-light-curve classification: TDE is 1, all other types are 0. F1 is the primary metric. No real competition score is available at this stage.
+The model, feature families and nested selection protocol were written before competition-data training. The task is binary full-light-curve classification: TDE is 1, all other types are 0. F1 is the primary metric. The first official-data evaluation is documented in [the run report](../reports/official_001/RESULTS.md).
+
+Before fitting, inspection of the supplied official archive required two data-contract corrections: omit observations with missing flux (891 train, 2,022 test) and floor the single negative test photometric redshift to zero during feature extraction. Input files remain unchanged; cleaning counts and hashes are recorded. No candidate settings or feature families were changed after viewing model scores.
 
 ## Feature extraction
 
 Each object is processed independently. No labels, population imputation, feature selection or train/test distribution fitting occurs during extraction. Missing bands retain a fixed schema. Each learned imputer is fitted inside its own model's fitting fold.
 
-1. Validate the official photometry and metadata contracts.
+1. Validate the official photometry and metadata contracts; omit and audit missing-flux observations. Use `max(Z, 0)` for all redshift-dependent features, while preserving raw metadata.
 2. Optionally de-redden flux and its error using Fitzpatrick (1999), Rv=3.1, evaluated at fixed representative band wavelengths. Scaling both preserves SNR. This is a monochromatic approximation, not a passband-integrated SED correction.
 3. Reference time is the highest-SNR observation in g/r/i, falling back to all bands if none exist. Time relative to this reference is divided by 1+Z. It is a practical phase proxy, not an estimate of the true physical peak with fitted uncertainty.
 4. Compute per-band count, time coverage, gaps, flux quantiles and shape, inverse-variance mean, constant-flux chi-square, SNR and detection-width statistics. Negative flux is retained.
@@ -15,7 +17,7 @@ Each object is processed independently. No labels, population imputation, featur
 7. Compute a weighted floating-mean Lomb–Scargle summary where coverage permits. No claim of physical periodicity is inferred from the largest sampled periodogram value.
 8. Compute pairwise AB colour differences from positive flux at shared phases -10, 0, +15, +30 and +60 days. Linear interpolation is bounded by observed samples, requires both endpoint SNRs >=2, and never bridges an observer-frame gap over 60 days. Unsupported colours remain missing.
 
-Redshift error is excluded because the official train and test sets have different availability. Using supplied Z still leaves a spectroscopic/photometric measurement shift. It must be studied once data are available. Synthetic redshift noise is not silently introduced.
+Redshift error is excluded because the official train and test sets have different availability. The archive confirms that Z_err is missing for every training object and present for every test object. Median Z is 0.4818 in training and 0.4842 in test; similar marginal distributions do not remove the spectroscopic/photometric measurement shift. Synthetic redshift noise is not introduced.
 
 ## Fixed candidate set
 

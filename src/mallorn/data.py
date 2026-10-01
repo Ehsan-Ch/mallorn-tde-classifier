@@ -31,8 +31,9 @@ def validate_log(frame: pd.DataFrame, train: bool) -> pd.DataFrame:
         raise ValueError("Empty or duplicate normalized object ID")
     for col in ("Z", "EBV"):
         frame[col] = pd.to_numeric(frame[col], errors="raise")
-        if not np.isfinite(frame[col]).all() or (frame[col] < 0).any():
-            raise ValueError(f"{col} must be finite and nonnegative")
+        invalid = (frame[col] <= -1) if col == "Z" else (frame[col] < 0)
+        if not np.isfinite(frame[col]).all() or invalid.any():
+            raise ValueError(f"{col} must be finite; require Z > -1 and EBV >= 0")
     if train:
         if frame.target.isna().any() or not frame.target.isin([0, 1]).all():
             raise ValueError("target must contain binary 0/1 labels")
@@ -56,12 +57,18 @@ def validate_photometry(frame: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("Unexpected filter; expected u,g,r,i,z,y")
     for col in ("Time (MJD)", "Flux", "Flux_err"):
         frame[col] = pd.to_numeric(frame[col], errors="raise")
-        if not np.isfinite(frame[col]).all():
+        values = frame[col].dropna() if col == "Flux" else frame[col]
+        if not np.isfinite(values).all():
             raise ValueError(f"Non-finite photometry: {col}")
     if (frame.Flux_err <= 0).any():
         raise ValueError("Flux uncertainties must be strictly positive")
     if frame.duplicated(["object_id", "Filter", "Time (MJD)"]).any():
         raise ValueError("Duplicate object/filter/time observations; resolve explicitly")
+    # Official files contain absent flux measurements. Never impute a measured
+    # flux from other objects; omit these observations and audit counts in loader.
+    frame = frame.dropna(subset=["Flux"])
+    if frame.empty:
+        raise ValueError("No measured flux observations remain")
     return frame.sort_values(["object_id", "Filter", "Time (MJD)"], kind="stable").reset_index(drop=True)
 
 
@@ -77,11 +84,15 @@ def load_dataset(root: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
     sample = pd.read_csv(root / "sample_submission.csv")
     validate_submission(sample, test.object_id)
     frames, files = [], [root / n for n in ("train_log.csv", "test_log.csv", "sample_submission.csv")]
+    cleaning = {}
     for mode, log in (("train", train), ("test", test)):
         paths = sorted(root.rglob(f"{mode}_full_lightcurves.csv"))
         if not paths:
             raise FileNotFoundError(f"No {mode}_full_lightcurves.csv under {root}")
-        photo = validate_photometry(pd.concat([pd.read_csv(p) for p in paths], ignore_index=True))
+        raw = pd.concat([pd.read_csv(p) for p in paths], ignore_index=True)
+        photo = validate_photometry(raw)
+        cleaning[mode] = {"input_rows": len(raw), "missing_flux_rows_removed": len(raw)-len(photo),
+                          "retained_rows": len(photo), "negative_redshifts_floored_in_features": int((log.Z < 0).sum())}
         if set(photo.object_id) != set(log.object_id):
             raise ValueError(f"{mode} photometry/metadata object sets differ")
         if "split" in log:
@@ -96,7 +107,7 @@ def load_dataset(root: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
                             "sha256": sha256(p)} for p in files],
                 "train_objects": len(train), "test_objects": len(test),
                 "positive_objects": int(train.target.sum()),
-                "photometry_rows": sum(map(len, frames))}
+                "photometry_rows": sum(map(len, frames)), "cleaning": cleaning}
     return train, test, pd.concat(frames, ignore_index=True), manifest
 
 

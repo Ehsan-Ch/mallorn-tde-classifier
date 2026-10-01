@@ -1,29 +1,24 @@
 # Verification and experiment status
 
-## Competition evaluation
+## Official-data evaluation completed
 
-**Pending authorized competition data. No MALLORN model score has been measured.**
+The user supplied the official 43-file competition archive. The first fixed nested run evaluated all 3,043 labelled objects (148 TDEs), then refitted the selected model and generated 7,135 test predictions.
 
-The official data page requires sign-in and acceptance of the competition rules. The current browser is signed out of Kaggle. No bypass, mirrored dataset, competitor feature table, test labels or pseudo-labels have been used.
+**Nested object-level F1: 0.5254; precision 0.4515; recall 0.6284.** [Full report and aggregate evidence](official_001/RESULTS.md).
 
-## Implemented
+Input inspection required explicit handling of missing flux and a negative photometric redshift before training. Every object was retained. There was one completed model experiment; loader failures occurred before any model fitting. No test labels, pseudo-labels, mirrored data or competitor feature tables were used.
 
-- Strict loader for the official train/test log and split-folder layout.
-- Label-free features, CatBoost/LightGBM candidates and a fixed probability blend.
-- Nested candidate and threshold selection, optional genuine source-group folds.
-- Per-object OOF evidence, hashes, conditional uncertainty, local inference and submission validation.
-- Offline tests with explicitly invented photometry, including saved-model replay.
+## Verification
 
-The LightGBM default is verified locally. CatBoost imports, but fitting is blocked by the sandbox's unavailable `/proc/self/statm`. Its implementation remains optional and unverified here. The dedicated hybrid test is explicitly skipped locally and enabled in the hosted CI configuration.
+**40 unit/integration tests passed; one optional CatBoost test skipped.** Regression checks cover missing-flux auditing and the negative-redshift feature policy. [Software verification](software_validation.json) records source hashes.
 
-**Local verification: 36 tests passed; one optional CatBoost integration test skipped.** The standalone CLI smoke run also completed (72 invented training objects, 12 invented test objects, 414 features). The test report in `software_validation.json` records the executed checks and source hashes. Fixture scores are intentionally not presented here as model performance. Full synthetic output, if generated locally, is labelled and kept under ignored `artifacts/`.
+The real-data run additionally passed independent input and feature hashes, outer/inner fold boundaries, exact OOF labels and F1, saved-model replay, and submission IDs/order/binary decisions. See [verification.json](official_001/verification.json). Synthetic fixtures remain software tests, not performance evidence.
 
-## Remaining work
+The LightGBM backend is verified. CatBoost fitting remains blocked by the sandbox's unavailable `/proc/self/statm`; hybrid results are not claimed. The optional hosted test is configured, but the [first hosted run](https://github.com/Ehsan-Ch/mallorn-tde-classifier/actions/runs/36783703232) did not start because of an account-level restriction. Local verification is recorded separately.
 
-1. Obtain the official competition files through authorized access.
-2. Inspect real schema/cadence, class balance, redshift distributions and any available parent-source mapping.
-3. Run the fixed nested protocol; audit feature missingness, fold membership and predictions.
-4. Evaluate model/feature changes as separate experiments and document negative results.
-5. If the user later requests a Kaggle submission, first verify whether late submissions are accepted. Only Kaggle evaluation can provide a comparable leaderboard score.
+## Remaining research
 
-GitHub Actions is configured for offline tests, including the optional CatBoost check. The [first hosted run](https://github.com/Ehsan-Ch/mallorn-tde-classifier/actions/runs/36783703232) did not start because of an account-level restriction. It provides no code-test result. Local verification is recorded separately; hosted/hybrid verification remains pending.
+- Genuine source-template groups are unavailable; object-level folds do not establish source independence.
+- Spectroscopic training versus photometric test redshift quality, threshold transfer and seed sensitivity remain open.
+- Optional hybrid, neural pretraining, Gaussian processes and physical fitting require separate experiments.
+- No Kaggle submission has been made. Organizer evaluation is needed for a comparable leaderboard score; beating top performers has not been demonstrated.

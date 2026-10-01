@@ -1,0 +1,172 @@
+[
+  {
+    "fold": 0,
+    "selected": "lgb_full",
+    "inner_tuning": {
+      "prior": {
+        "threshold": 0.04808877928483354,
+        "tuning_f1": 0.09247648902821316
+      },
+      "lgb_basic": {
+        "threshold": 0.08118922717746867,
+        "tuning_f1": 0.553030303030303
+      },
+      "lgb_full": {
+        "threshold": 0.05069708962531902,
+        "tuning_f1": 0.5555555555555556
+      }
+    },
+    "test_metrics": {
+      "n": 609,
+      "positives": 30,
+      "predicted_positives": 38,
+      "f1": 0.5,
+      "precision": 0.4473684210526316,
+      "recall": 0.5666666666666667,
+      "average_precision": 0.46635208121225163,
+      "roc_auc": 0.9269430051813471,
+      "confusion_matrix_tn_fp_fn_tp": [
+        558,
+        21,
+        13,
+        17
+      ]
+    }
+  },
+  {
+    "fold": 1,
+    "selected": "lgb_full",
+    "inner_tuning": {
+      "prior": {
+        "threshold": 0.04808877928483354,
+        "tuning_f1": 0.09247648902821316
+      },
+      "lgb_basic": {
+        "threshold": 0.07231333256809412,
+        "tuning_f1": 0.4496124031007752
+      },
+      "lgb_full": {
+        "threshold": 0.037778354918529246,
+        "tuning_f1": 0.5365853658536586
+      }
+    },
+    "test_metrics": {
+      "n": 609,
+      "positives": 30,
+      "predicted_positives": 53,
+      "f1": 0.5060240963855421,
+      "precision": 0.39622641509433965,
+      "recall": 0.7,
+      "average_precision": 0.6316965886198105,
+      "roc_auc": 0.9479562464018423,
+      "confusion_matrix_tn_fp_fn_tp": [
+        547,
+        32,
+        9,
+        21
+      ]
+    }
+  },
+  {
+    "fold": 2,
+    "selected": "lgb_full",
+    "inner_tuning": {
+      "prior": {
+        "threshold": 0.04808877928483354,
+        "tuning_f1": 0.09247648902821316
+      },
+      "lgb_basic": {
+        "threshold": 0.05797122587993794,
+        "tuning_f1": 0.4962962962962963
+      },
+      "lgb_full": {
+        "threshold": 0.12552444720284625,
+        "tuning_f1": 0.5
+      }
+    },
+    "test_metrics": {
+      "n": 609,
+      "positives": 30,
+      "predicted_positives": 27,
+      "f1": 0.5263157894736842,
+      "precision": 0.5555555555555556,
+      "recall": 0.5,
+      "average_precision": 0.4815967926324559,
+      "roc_auc": 0.9539435808865862,
+      "confusion_matrix_tn_fp_fn_tp": [
+        567,
+        12,
+        15,
+        15
+      ]
+    }
+  },
+  {
+    "fold": 3,
+    "selected": "lgb_full",
+    "inner_tuning": {
+      "prior": {
+        "threshold": 0.04867529266789895,
+        "tuning_f1": 0.09318715740015662
+      },
+      "lgb_basic": {
+        "threshold": 0.11100203752082927,
+        "tuning_f1": 0.4533333333333333
+      },
+      "lgb_full": {
+        "threshold": 0.03112523288821467,
+        "tuning_f1": 0.4936708860759494
+      }
+    },
+    "test_metrics": {
+      "n": 608,
+      "positives": 29,
+      "predicted_positives": 49,
+      "f1": 0.5641025641025641,
+      "precision": 0.4489795918367347,
+      "recall": 0.7586206896551724,
+      "average_precision": 0.6380842975676501,
+      "roc_auc": 0.9695670299565243,
+      "confusion_matrix_tn_fp_fn_tp": [
+        552,
+        27,
+        7,
+        22
+      ]
+    }
+  },
+  {
+    "fold": 4,
+    "selected": "lgb_full",
+    "inner_tuning": {
+      "prior": {
+        "threshold": 0.04867529266789895,
+        "tuning_f1": 0.09318715740015662
+      },
+      "lgb_basic": {
+        "threshold": 0.06987582071425773,
+        "tuning_f1": 0.44106463878326996
+      },
+      "lgb_full": {
+        "threshold": 0.06813792576207295,
+        "tuning_f1": 0.5188284518828452
+      }
+    },
+    "test_metrics": {
+      "n": 608,
+      "positives": 29,
+      "predicted_positives": 39,
+      "f1": 0.5294117647058824,
+      "precision": 0.46153846153846156,
+      "recall": 0.6206896551724138,
+      "average_precision": 0.5818492901360057,
+      "roc_auc": 0.9655172413793104,
+      "confusion_matrix_tn_fp_fn_tp": [
+        558,
+        21,
+        11,
+        18
+      ]
+    }
+  }
+]

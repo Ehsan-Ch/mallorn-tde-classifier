@@ -1,26 +1,26 @@
 {
-  "checked_at_utc": "2026-09-30T22:06:24.181781+00:00",
+  "checked_at_utc": "2026-10-01T04:57:19.617238+00:00",
   "python": "3.12.14",
   "command": "python -m unittest discover -s tests -v",
-  "tests_discovered": 37,
-  "passed": 36,
+  "tests_discovered": 41,
+  "passed": 40,
   "skipped": 1,
   "failed": 0,
-  "duration_seconds": 6.698,
-  "skipped_reason": "Optional CatBoost hybrid test requires a compatible host; authoring sandbox lacks /proc/self/statm",
+  "duration_seconds": 8.2,
+  "skipped_reason": "Optional CatBoost integration needs unavailable /proc/self/statm",
   "tested_backend": "lightgbm",
-  "standalone_cli_smoke": "passed; 72 invented training objects, 12 invented test objects, 414 features",
-  "competition_data_run": "not_run_data_access_required",
+  "competition_data_run": "official_001 completed; independent artifact audit passed",
   "kaggle_submission": "not_submitted",
   "files_sha256": {
     "pyproject.toml": "1810deb32748c929c2382ae6bbd99f48e00c17dea45cf7b4e6960ac5fa60af45",
     "src/mallorn/__init__.py": "ccdbdabbc1911dd7275f3dbeb771be8cf2deab15a52bd12901ff1b622542672a",
     "src/mallorn/cli.py": "ca30853fcf88a7e00baaea4bebb11342e739490998fcbaeabaa55b17ec825eca",
-    "src/mallorn/data.py": "738bb9838740aac2c52e97298a5512c5460639cba0dd3ff90f263f9939670bea",
-    "src/mallorn/features.py": "156f353b5551153acd1f87ed3bf0794001d783c54dbce7ea71745256d88bc072",
+    "src/mallorn/data.py": "ad3dfde8ee4b2a78f7e051bbe125005abdf00ce9ef800b765d48441b620716dc",
+    "src/mallorn/features.py": "03129c595e3849cfe3fd56a3b410375c2b173c2ca24ff471a0020e4ed535d6f4",
     "src/mallorn/fixtures.py": "422f89651e423efebf783aa27af9240c3b539a0ff7b71a2b66b2d8fe5fb3bd3c",
     "src/mallorn/modeling.py": "eff56d47c167014df88cd4ed3d77590de634cfb634acd1b5bdfa8e4fd0c95ff7",
     "src/mallorn/reporting.py": "af5aa9077d54b9eb99830b94942c91b060f65d92713ea7a37cbdfb8c50e79f06",
-    "tests/test_integrity.py": "ec77b5ae6719963f61de34326e13d5926fc2f0a4ac4ac9cd6e9f43080ed2d96f"
+    "tests/test_integrity.py": "76288bfe38844487a4625e226a6c92e90197156c4a1706d3d5554e4bd11ab53a",
+    "scripts/verify_run.py": "b46b63852d9121ac4259226dd4956bde04679f92e1413974703d5a4664d5cc8b"
   }
 }
