@@ -1,0 +1,26 @@
+{
+  "physics_aux": {
+    "repetitions": 2,
+    "folds_per_repetition": 5,
+    "validation_predictions_per_object": 2,
+    "fitting_validation_overlap": 0
+  },
+  "selected_binary": {
+    "repetitions": 2,
+    "folds_per_repetition": 5,
+    "validation_predictions_per_object": 2,
+    "fitting_validation_overlap": 0
+  },
+  "selected_aux": {
+    "repetitions": 2,
+    "folds_per_repetition": 5,
+    "validation_predictions_per_object": 2,
+    "fitting_validation_overlap": 0
+  },
+  "hierarchical": {
+    "repetitions": 2,
+    "folds_per_repetition": 5,
+    "validation_predictions_per_object": 2,
+    "fitting_validation_overlap": 0
+  }
+}

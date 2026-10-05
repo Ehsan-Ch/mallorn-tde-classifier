@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "frequency": "hourly",
+  "timezone": "Europe/Copenhagen",
+  "scope": "Local-only fixed experiment queue; no uploads to GitHub or Kaggle",
+  "token_reset_trigger": false,
+  "workspace_persistence_guaranteed": false,
+  "instructions": "docs/RESUME_RESEARCH.md"
+}

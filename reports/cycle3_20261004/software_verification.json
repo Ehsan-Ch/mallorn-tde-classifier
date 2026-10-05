@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-04",
+  "new_checkpoint_tests": 8,
+  "passed": 8,
+  "full_test_suite_rerun": false,
+  "reason": "Native CatBoost import is unavailable in the refreshed environment; historical 47-test result is not a current full-suite run.",
+  "restart_integration": {
+    "first_fold_reused_without_change": true,
+    "duplicate_worker_prevented": true,
+    "original_fold_sha256": "e7c7fac45f109681cd7f234c9d467cac64755d8fe38ad89abdf3b489f4ed1719",
+    "killed_worker_lock_released": true,
+    "interrupted_csv_preserved_previous_output": true
+  },
+  "automatic_continuation": {
+    "enabled": true,
+    "cadence": "hourly",
+    "token_reset_event_available": false,
+    "requires_workspace_and_tools": true,
+    "uploads_allowed": false
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "recipe_sha256": "81c54dc01ba9b15e950f2e48baf9ed4fbac09ba3056554b97f6098eb11a4ef12",
+  "training_scope": "All 3043 labeled competition objects after the one-time audit",
+  "threshold": 0.3228571055799115,
+  "test_objects": 7135,
+  "predicted_positive": 406,
+  "components": [
+    {
+      "component": "physics_advanced/cat_aux3_d5",
+      "model_sha256": "25a769a52d65a8c6ef9c87bc0c13fa9e1dcb232e608770ab1736c24663dce890",
+      "test_features_sha256": "33332d9985ce0a3af43a0a50d388e3ccef359a076310a63eb0fb1244c6fb92ab",
+      "features_used": 471
+    },
+    {
+      "component": "complete_selected/cat_d4_w3_top125",
+      "model_sha256": "f412a2fbf5ab08f3c1ccaaeda3f8865a2f918179c7ab58903ca923516eb84272",
+      "test_features_sha256": "d89c963e438a30a40ad399e3776cc7a73f8d5936cdc532e955dfa53a628d1cb8",
+      "features_used": 125
+    }
+  ],
+  "submission_sha256": "3b278ac67b06236db371a3fa0276310dd25a83308ab5a6ac7c9542163d9422e3",
+  "prediction_replay_checked": true,
+  "published_to_github": false,
+  "submitted_to_kaggle": true,
+  "notice": "User-authorized late submission scored on 2026-10-04; no official placement or new GitHub publication",
+  "kaggle_private_f1": 0.6648,
+  "kaggle_public_f1": 0.6825,
+  "kaggle_status": "Complete (after deadline)"
+}

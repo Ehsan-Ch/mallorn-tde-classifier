@@ -1,0 +1,51 @@
+{
+  "development_objects": 2282,
+  "audit_objects": 761,
+  "audit_outcomes_read": false,
+  "schemas": {
+    "physics": {
+      "features": 471,
+      "test_objects": 7135
+    },
+    "enhanced": {
+      "features": 885,
+      "test_objects": 7135
+    },
+    "complete": {
+      "features": 1126,
+      "test_objects": 7135
+    },
+    "physical_view": {
+      "features": 736,
+      "test_objects": 7135
+    }
+  },
+  "oof": {
+    "cached_features": {
+      "models": 5,
+      "sha256": "216e1188cb4181411ffddd7b55d81d472420d73a500debe8fb5cb5885f7744f5"
+    },
+    "complete_selected": {
+      "models": 3,
+      "sha256": "53adc331cdf5bd84e6682ce0a19ada8fd16b71db70af35ed9fc2575f384b05f9"
+    },
+    "enhanced_features": {
+      "models": 5,
+      "sha256": "b6e27a8addecfb43217c802bebc3bb51a41a847fc5c493e8e67cba98464296f5"
+    },
+    "physics_only": {
+      "models": 3,
+      "sha256": "01765a3ea7981466f81273557fa510b2de8124093ee954ed2afaa80f2de207c2"
+    },
+    "physics_advanced": {
+      "models": 5,
+      "sha256": "19fa40845b9f22290f394e8c16e6e898200cd6810c6cbab89de9a811ae28c3ea"
+    }
+  },
+  "replay": {
+    "candidate": "cat_aux3_d5_top125",
+    "fold": 0,
+    "objects": 457,
+    "max_probability_error": 0.0
+  }
+}

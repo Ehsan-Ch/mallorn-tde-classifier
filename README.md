@@ -5,7 +5,7 @@
 A reproducible Python pipeline inspired by the published second- and third-place MALLORN solutions: domain-informed light-curve features, gradient-boosted trees, and F1 threshold selection. The default compares basic and full LightGBM feature sets under nested validation. An optional hybrid backend adds CatBoost and a fixed blend.
 
 > **Measured on the official dataset: nested local F1 0.5254.**
-> Trained and evaluated on 3,043 labelled objects, with 148 TDEs. Generated and verified predictions for 7,135 test objects. No Kaggle submission or leaderboard score is claimed.
+> Trained and evaluated on 3,043 labelled objects, with 148 TDEs. Generated and verified predictions for 7,135 test objects. This baseline was not submitted; the improved recipe has a separate Kaggle evaluation below.
 
 | F1 | Precision | Recall | Validation |
 | ---: | ---: | ---: | --- |
@@ -13,7 +13,23 @@ A reproducible Python pipeline inspired by the published second- and third-place
 
 [**Read the experiment results →**](reports/official_001/RESULTS.md)
 
+> **Kaggle evaluation, 4 October 2026:** private F1 **0.6648**, public F1 **0.6825**, from one completed late submission. The private score is 0.0176 below the winner; no official placement is claimed. The improvement source and aggregate reports are included in this repository. [Read the verified result →](reports/kaggle_20261004/RESULTS.md)
+>
+> Local development F1 was **0.6912**; reserved-audit F1 was **0.5833**, with the recipe and threshold fixed before scoring. [Local audit →](reports/improvement_20261003/RESULTS.md)
+
 [Methodology](docs/METHODOLOGY.md) · [Data setup](docs/DATA.md) · [Leading-solution references](docs/SOURCES.md) · [Verification status](reports/STATUS.md)
+
+The next candidate passed its fixed local comparison: repeated-validation F1 **0.6841**, versus **0.6707** for the reference recipe. Its threshold is frozen; final refitting is blocked by the current runtime's CatBoost process-statistics access. It has **no Kaggle score yet**. [Second-cycle results](reports/cycle2_20261004/RESULTS.md).
+
+Further local research completed **50 additional fold fits**. The highest
+development F1 was **0.7030**, and five-class supervision reached **0.7131 average
+precision**. The new candidates failed the full stability rule, so they have
+not replaced the selected recipe. [Results](reports/cycle4_20261004/RESULTS.md) ·
+[Checkpointed continuation](docs/RESUME_RESEARCH.md). Code publication was authorized on 5 October 2026.
+
+**Kaggle notebook:** [Self-contained source notebook](notebooks/mallorn_research.ipynb), including a synthetic software check and opt-in official training. [Publication checkpoint](docs/PUBLICATION_CHECKPOINT.md).
+
+**Recovery note:** A runtime rollback removed the original cycle-5 model files. The modeling method has been reconstructed and tested in a separate namespace; its previously reported results are explicitly marked as historical session records. [Recovery details](reports/RECOVERY_20261005.md) · [Recovered method](docs/FIFTH_CYCLE_RECOVERY.md).
 
 ## What this project demonstrates
 
@@ -30,7 +46,7 @@ A reproducible Python pipeline inspired by the published second- and third-place
 
 The [second-place write-up](https://www.kaggle.com/competitions/mallorn-astronomical-classification-challenge/writeups/mallorn-2nd-place-solution) informed the emphasis on shape, phase bins, colours and boosting ensembles. The [third-place write-up](https://www.kaggle.com/competitions/mallorn-astronomical-classification-challenge/writeups/3rd-place-write-up-catboost-with-threshold-tuning) supports physics-informed features, CatBoost and threshold tuning.
 
-This is an independent implementation of a tractable subset of those ideas. It does **not** reproduce the winners' full systems: pretrained neural networks, two-dimensional Gaussian processes, blackbody/SALT2 fits and large ensembles are not implemented. [Sources and differences](docs/SOURCES.md) distinguish implemented work from possible extensions.
+This is an independent implementation of a subset of those ideas. The [improvement workflow](docs/IMPROVEMENT_METHODS.md) adds two-dimensional Gaussian processes, approximate blackbody features, flare fits, class-aware supervision and training-fold feature selection. Pretrained neural networks, SALT2 and echo-state networks remain unimplemented. [Sources and differences](docs/SOURCES.md) distinguish this work from the leading systems.
 
 ```mermaid
 flowchart TD
@@ -65,7 +81,7 @@ mallorn run --data data/mallorn --output artifacts/run_001
 
 The default run performs five outer folds, three inner folds and 500 boosting iterations per model. Use a new output directory for each experiment. Full options and the expected file layout are in [Data setup](docs/DATA.md).
 
-`--backend hybrid` adds CatBoost and its equal-weight blend with LightGBM. CatBoost fitting could not be verified in the authoring sandbox because a required process-statistics file is unavailable. The default LightGBM workflow is the locally tested path; optional-backend verification remains pending on a compatible host.
+`--backend hybrid` adds CatBoost and its equal-weight blend with LightGBM. Native CatBoost fitting and the optional hybrid test are now verified locally. Some restricted runtimes hide the process-statistics file required by CatBoost; training needs a compatible execution environment.
 
 To check the software without competition data:
 
@@ -97,6 +113,6 @@ The primary score is the **outer nested F1**. The threshold selected from all ou
 
 ## Attribution and license
 
-Created with **OpenAI Codex assistance for Ehsan Cheraghi**. The package is independently written, with methodology references credited in [SOURCES.md](docs/SOURCES.md). It is a portfolio research project, not a claim of Kaggle participation or placement.
+Created with **OpenAI Codex assistance for Ehsan Cheraghi**. The package is independently written, with methodology references credited in [SOURCES.md](docs/SOURCES.md). It is a portfolio research project, not a claim of prize eligibility or official competition placement.
 
 Code: [MIT](LICENSE). Competition data remain subject to [Kaggle's competition rules](https://www.kaggle.com/competitions/mallorn-astronomical-classification-challenge/rules); they, trained models and per-object outputs are excluded from this repository. Only aggregate experiment evidence and hashes are published; raw observations, per-object features and predictions remain outside the public repository.

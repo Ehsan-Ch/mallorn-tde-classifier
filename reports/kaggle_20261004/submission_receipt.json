@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-10-04T08:27:43.905739+00:00",
+  "competition": "mallorn-astronomical-classification-challenge",
+  "account_display_name": "Ehsan.Ch",
+  "status": "Complete (after deadline)",
+  "filename": "mallorn-improvement-submission.csv",
+  "submission_sha256": "3b278ac67b06236db371a3fa0276310dd25a83308ab5a6ac7c9542163d9422e3",
+  "private_f1": 0.6648,
+  "public_f1": 0.6825,
+  "rows": 7135,
+  "positive_predictions": 406,
+  "recipe_sha256": "81c54dc01ba9b15e950f2e48baf9ed4fbac09ba3056554b97f6098eb11a4ef12",
+  "evidence_url": "https://www.kaggle.com/competitions/mallorn-astronomical-classification-challenge/submissions",
+  "evidence_screenshot": "submission-confirmation.jpg",
+  "authorization": "User approved submission on 2026-10-04",
+  "new_github_publication": false,
+  "official_placement_claimed": false
+}

@@ -1,0 +1,34 @@
+{
+  "completed_at": "2026-10-03T17:12:47.688547+00:00",
+  "recipe_sha256": "81c54dc01ba9b15e950f2e48baf9ed4fbac09ba3056554b97f6098eb11a4ef12",
+  "threshold": 0.3228571055799115,
+  "audit": {
+    "n": 761,
+    "positives": 37,
+    "predicted_positives": 35,
+    "f1": 0.5833333333333334,
+    "precision": 0.6,
+    "recall": 0.5675675675675675,
+    "average_precision": 0.5719342107359919,
+    "roc_auc": 0.9759593847991638,
+    "confusion_matrix_tn_fp_fn_tp": [
+      710,
+      14,
+      16,
+      21
+    ]
+  },
+  "conditional_f1_interval": {
+    "ci95_low": 0.43478260869565216,
+    "ci95_high": 0.7076923076923077,
+    "repeats": 5000,
+    "unit": "object",
+    "scope": "Conditional on fixed audit decisions; no refitting or source-group uncertainty"
+  },
+  "limitations": [
+    "Development selection scores are optimistic after model and threshold search.",
+    "The audit was reserved for this cycle but all labels were used by the old baseline.",
+    "No genuine source-template groups are available.",
+    "Audit F1 cannot establish equivalence to the Kaggle private leaderboard."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-05",
+  "user_authorized": [
+    "github_code_update",
+    "kaggle_notebook_upload"
+  ],
+  "github": {
+    "repository": "Ehsan-Ch/mallorn-tde-classifier",
+    "base_commit": "d05fdd34816264360a9050bb24f7d79d2b929d19",
+    "status": "source_ready_for_publication"
+  },
+  "kaggle": {
+    "account": "ehsan1993",
+    "notebook_title": "MALLORN - Reproducible TDE Research",
+    "notebook_url": null,
+    "status": "validated_notebook_ready_for_import"
+  },
+  "competition_submission": {
+    "new_submission_requested": false,
+    "private_f1": 0.6648,
+    "public_f1": 0.6825
+  },
+  "recovery": {
+    "available_base": "5c71f33",
+    "original_cycle5_models_available": false,
+    "source_reconstructed": "src/mallorn/selected_ensemble.py",
+    "details": "reports/RECOVERY_20261005.md"
+  },
+  "next_step": "Publish this source snapshot to GitHub, then import the validated notebook into Kaggle."
+}

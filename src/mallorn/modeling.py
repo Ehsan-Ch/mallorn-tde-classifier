@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from catboost import CatBoostClassifier
 from lightgbm import LGBMClassifier
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import (average_precision_score, confusion_matrix, f1_score,
                              precision_recall_curve, precision_score, recall_score, roc_auc_score)
@@ -14,6 +15,14 @@ from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold
 from sklearn.pipeline import make_pipeline
 
 from .features import basic_columns
+
+
+class PipelineCatBoostClassifier(ClassifierMixin, CatBoostClassifier, BaseEstimator):
+    """Supply sklearn estimator tags for the pinned CatBoost 1.2.8 pipeline.
+
+    CatBoost's native fitting is unchanged. sklearn 1.8 requires the public
+    estimator tags API; the mixins follow sklearn's documented MRO ordering.
+    """
 
 
 @dataclass(frozen=True)
@@ -102,7 +111,7 @@ def folds(y, groups, count, seed):
 def fit_model(name, x, y, cfg: TrainConfig, seed):
     columns = basic_columns(x.columns) if name.endswith("_basic") else list(x.columns)
     if name.startswith("cat_"):
-        estimator = CatBoostClassifier(iterations=cfg.iterations,depth=5,learning_rate=.04,
+        estimator = PipelineCatBoostClassifier(iterations=cfg.iterations,depth=5,learning_rate=.04,
             l2_leaf_reg=6,loss_function="Logloss",random_seed=seed,thread_count=cfg.threads,
             allow_writing_files=False,verbose=False)
     elif name.startswith("lgb_"):

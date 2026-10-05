@@ -1,0 +1,12 @@
+{
+  "notebook_sha256": "065b86faa1ea17fe6aaa227dd4c037cdba9420635e60464ffa184b9dfba4a342",
+  "nbformat_valid": true,
+  "all_default_code_cells_executed": true,
+  "data_kind": "synthetic_software_check",
+  "recovered_selection_tests_passed": 4,
+  "checkpoint_tests_passed": 8,
+  "official_training_executed": false,
+  "historical_cycle5_models_recovered": false,
+  "optional_catboost_tested": false,
+  "native_catboost_import_blocked_in_restored_local_runtime": true
+}
