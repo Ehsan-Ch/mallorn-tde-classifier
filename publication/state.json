@@ -35,5 +35,14 @@
     "source_reconstructed": "src/mallorn/selected_ensemble.py",
     "details": "reports/RECOVERY_20261005.md"
   },
-  "next_step": "Publication complete. On continue, read this remote state and verify remote versions before making any new changes."
+  "next_step": "Publication complete. On continue, read this remote state and verify remote versions before making any new changes.",
+  "cycle5_recovery_investigation": {
+    "verified_at": "2026-10-07",
+    "status": "rebuild_prerequisites_verified",
+    "original_models_found": false,
+    "full_rebuild_started": false,
+    "report": "reports/CYCLE5_RECOVERY_INVESTIGATION_20261007.md",
+    "model_replay_max_error": 0.0,
+    "reconstructed_method_tests_passed": 4
+  }
 }
