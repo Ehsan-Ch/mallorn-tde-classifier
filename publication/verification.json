@@ -1,5 +1,5 @@
 {
-  "notebook_sha256": "065b86faa1ea17fe6aaa227dd4c037cdba9420635e60464ffa184b9dfba4a342",
+  "notebook_sha256": "f806492f9ead42b209e5eb60202f6e5affa65f02e344c668885f1ee6093357be",
   "nbformat_valid": true,
   "all_default_code_cells_executed": true,
   "data_kind": "synthetic_software_check",
@@ -8,5 +8,10 @@
   "official_training_executed": false,
   "historical_cycle5_models_recovered": false,
   "optional_catboost_tested": false,
-  "native_catboost_import_blocked_in_restored_local_runtime": true
+  "native_catboost_import_blocked_in_restored_local_runtime": true,
+  "kaggle_default_cells_executed": true,
+  "kaggle_script_version_id": 355572876,
+  "kaggle_runtime_seconds": 66.4,
+  "verified_at": "2026-10-07",
+  "verification_scope": "Synthetic software check only; optional official fitting and CatBoost were not exercised."
 }

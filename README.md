@@ -27,7 +27,7 @@ precision**. The new candidates failed the full stability rule, so they have
 not replaced the selected recipe. [Results](reports/cycle4_20261004/RESULTS.md) ·
 [Checkpointed continuation](docs/RESUME_RESEARCH.md). Code publication was authorized on 5 October 2026.
 
-**Kaggle notebook:** [Self-contained source notebook](notebooks/mallorn_research.ipynb), including a synthetic software check and opt-in official training. [Publication checkpoint](docs/PUBLICATION_CHECKPOINT.md).
+**Kaggle notebook:** [Saved version 2](https://www.kaggle.com/code/ehsan1993/mallorn-reproducible-tde-research?scriptVersionId=355572876) (private in the owner account; synthetic check completed successfully in 66.4 seconds). [Self-contained source notebook](notebooks/mallorn_research.ipynb), including a synthetic software check and opt-in official training. [Publication checkpoint](docs/PUBLICATION_CHECKPOINT.md).
 
 **Recovery note:** A runtime rollback removed the original cycle-5 model files. The modeling method has been reconstructed and tested in a separate namespace; its previously reported results are explicitly marked as historical session records. [Recovery details](reports/RECOVERY_20261005.md) · [Recovered method](docs/FIFTH_CYCLE_RECOVERY.md).
 

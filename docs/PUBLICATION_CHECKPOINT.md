@@ -41,3 +41,13 @@ reported score into a notebook's execution outputs as if that run computed it.
 Token-reset detection is unavailable. The user gives the continuation signal.
 Stored source and publication receipts survive through GitHub; running processes
 and unuploaded model artifacts cannot be guaranteed across workspace resets.
+
+## Completed publication — verified 7 October 2026
+
+- GitHub source commit: `6c86d32927bfb76edbd972ef10d9324dc3bee3d7`; all 66 changed file hashes verified.
+- Kaggle bootstrap fix: `1558f2d17d6e63a2c5eb56af6de874ecede25d4a`; all four changed file hashes verified. The environment is created without ensurepip and populated by the host pip.
+- Kaggle version 2 / script version `355572876`: successfully executed in 66.4 seconds, private visibility.
+- Exact saved version: https://www.kaggle.com/code/ehsan1993/mallorn-reproducible-tde-research?scriptVersionId=355572876
+- All five default code cells completed; feature extraction, synthetic LightGBM fit, exact saved-model replay and prediction schema checks passed. Official data training stayed disabled.
+- Version 1 failed during ensurepip bootstrap; version 2 supersedes it. No extra notebook or competition submission was created.
+- Publication is complete. Resume by checking remote state; do not repeat uploads. Original cycle-5 trained artifacts remain unavailable.

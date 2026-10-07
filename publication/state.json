@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05",
+  "updated_at": "2026-10-07",
   "user_authorized": [
     "github_code_update",
     "kaggle_notebook_upload"
@@ -8,17 +8,21 @@
   "github": {
     "repository": "Ehsan-Ch/mallorn-tde-classifier",
     "base_commit": "d05fdd34816264360a9050bb24f7d79d2b929d19",
-    "status": "source_published_hash_verified",
+    "status": "complete",
     "source_commit": "6c86d32927bfb76edbd972ef10d9324dc3bee3d7",
-    "verified_files": 66
+    "verified_files": 66,
+    "notebook_fix_commit": "1558f2d17d6e63a2c5eb56af6de874ecede25d4a"
   },
   "kaggle": {
     "account": "ehsan1993",
     "notebook_title": "MALLORN - Reproducible TDE Research",
-    "notebook_url": "https://www.kaggle.com/code/ehsan1993/mallorn-reproducible-tde-research",
-    "status": "version_2_save_and_run_started",
+    "notebook_url": "https://www.kaggle.com/code/ehsan1993/mallorn-reproducible-tde-research?scriptVersionId=355572876",
+    "status": "complete_successfully_executed",
     "visibility": "private",
-    "version": 2
+    "version": 2,
+    "script_version_id": 355572876,
+    "runtime_seconds": 66.4,
+    "default_software_check_passed": true
   },
   "competition_submission": {
     "new_submission_requested": false,
@@ -31,5 +35,5 @@
     "source_reconstructed": "src/mallorn/selected_ensemble.py",
     "details": "reports/RECOVERY_20261005.md"
   },
-  "next_step": "Inspect existing Kaggle version 2 run; publish final verification receipt. Do not create another notebook."
+  "next_step": "Publication complete. On continue, read this remote state and verify remote versions before making any new changes."
 }
