@@ -44,5 +44,14 @@
     "report": "reports/CYCLE5_RECOVERY_INVESTIGATION_20261007.md",
     "model_replay_max_error": 0.0,
     "reconstructed_method_tests_passed": 4
+  },
+  "cycle5_rebuild": {
+    "status": "running",
+    "started_at": "2026-10-07T09:48:42Z",
+    "output": "artifacts/cycle5_recovered",
+    "runner": "scripts/cycle5_recovered.py",
+    "expected_fold_checkpoints": 20,
+    "checkpoint_policy": "atomic per fold; resume only matching manifests",
+    "next_step": "Inspect progress and resume runner only if no active research process. Verify comparison and preserve trained artifacts after completion."
   }
 }
