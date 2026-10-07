@@ -50,8 +50,8 @@ PYTHON = Path(sys.executable)
 if not versions_match():
     PYTHON = PROJECT / '.venv/bin/python'
     if not PYTHON.exists():
-        subprocess.run([sys.executable, '-m', 'venv', '--system-site-packages', str(PROJECT/'.venv')], check=True)
-    subprocess.run([str(PYTHON), '-m', 'pip', 'install', '--no-cache-dir', '-q', *requirements], check=True, env=ENV)
+        subprocess.run([sys.executable, '-m', 'venv', '--without-pip', '--system-site-packages', str(PROJECT/'.venv')], check=True)
+    subprocess.run([sys.executable, '-m', 'pip', '--python', str(PYTHON), 'install', '--no-cache-dir', '-q', *requirements], check=True, env=ENV)
 ENV['PYTHONPATH'] = str(PROJECT/'src')
 def command(*args):
     subprocess.run([str(PYTHON), *map(str,args)], cwd=PROJECT, env=ENV, check=True)

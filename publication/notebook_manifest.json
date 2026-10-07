@@ -1,5 +1,5 @@
 {
-  "notebook_sha256": "065b86faa1ea17fe6aaa227dd4c037cdba9420635e60464ffa184b9dfba4a342",
+  "notebook_sha256": "f806492f9ead42b209e5eb60202f6e5affa65f02e344c668885f1ee6093357be",
   "embedded_source_hashes": {
     "src/mallorn/__init__.py": "ccdbdabbc1911dd7275f3dbeb771be8cf2deab15a52bd12901ff1b622542672a",
     "src/mallorn/checkpointing.py": "ac795168654edb852e1e6847ec4a01689f774c36f0e4b6e4463b29b9934c3541",
