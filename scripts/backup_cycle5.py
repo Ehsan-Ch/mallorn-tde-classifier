@@ -35,6 +35,26 @@ def backup(destination):
                    'fold_checkpoints': sum(name.endswith('.joblib') for name in paths),
                    'private_data_included': True, 'sha256': hashes}
         archive.writestr('BACKUP_MANIFEST.json', json.dumps(receipt, indent=2))
+        archive.writestr('RESTORE.md', '''# Restore this private cycle-5 snapshot
+
+Extract into a fresh project directory. Do not merge it over a different experiment.
+Check every SHA256 in BACKUP_MANIFEST.json before loading the trusted model files.
+The archive contains official training metadata, derived features and per-object
+validation predictions. Keep it private; do not upload the ZIP to the public repo.
+
+Use Python 3.12 and an isolated environment with the package versions recorded
+in artifacts/cycle5_recovered/manifest.json. Core rebuild dependencies are
+lightgbm 4.6.0, numpy 2.3.5, pandas 2.2.3, scipy 1.17.0,
+scikit-learn 1.8.0 and joblib 1.5.3. Cached reference predictions avoid CatBoost.
+
+From the project root, use that environment's Python:
+
+    PYTHONPATH=src:scripts OPENBLAS_NUM_THREADS=1 MALLORN_THREADS=4 python scripts/cycle5_recovered.py --max-seconds 1500
+
+Completed matching folds are reused. Never edit frozen manifests to force reuse.
+A complete snapshot also has comparison.json and verification_receipt.json under
+artifacts/cycle5_recovered. Rebuilt models are not the lost original files.
+''')
     with zipfile.ZipFile(temporary) as archive:
         for name, digest in hashes.items():
             assert hashlib.sha256(archive.read(name)).hexdigest() == digest, name

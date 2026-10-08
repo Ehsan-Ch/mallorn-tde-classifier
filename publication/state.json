@@ -35,7 +35,7 @@
     "source_reconstructed": "src/mallorn/selected_ensemble.py",
     "details": "reports/RECOVERY_20261005.md"
   },
-  "next_step": "Cycle-5 rebuild in progress. Check atomic fold checkpoints and active lock before resuming; finish comparison and preserve verified backup.",
+  "next_step": "Cycle-5 rebuild complete. Read the results and backup receipt before any new work. No new competition submission is authorized.",
   "cycle5_recovery_investigation": {
     "verified_at": "2026-10-07",
     "status": "rebuild_prerequisites_verified",
@@ -46,17 +46,26 @@
     "reconstructed_method_tests_passed": 4
   },
   "cycle5_rebuild": {
-    "status": "running",
+    "status": "complete_verified",
     "started_at": "2026-10-07T09:48:42Z",
     "output": "artifacts/cycle5_recovered",
     "runner": "scripts/cycle5_recovered.py",
     "expected_fold_checkpoints": 20,
     "checkpoint_policy": "atomic per fold; resume only matching manifests",
-    "next_step": "Inspect progress and resume runner only if no active research process. Verify comparison and preserve trained artifacts after completion.",
-    "completed_fold_checkpoints": 10,
+    "next_step": "Download and retain verified private ZIP. Training and replay are complete; no retraining is needed.",
+    "completed_fold_checkpoints": 20,
     "resumed_at": "2026-10-08",
     "surviving_checkpoint_replay_max_error": 0.0,
-    "backup_status": "partial_zip_verified_persistent_upload_failed_auth",
-    "partial_backup": "mallorn-cycle5-rebuild-partial-20261008.zip"
+    "backup_status": "complete_zip_verified_persistent_upload_failed_auth",
+    "partial_backup": "mallorn-cycle5-rebuild-partial-20261008.zip",
+    "completed_at": "2026-10-08T07:36:50.466469+00:00",
+    "retained_final_models": 60,
+    "replay_max_error": 0.0,
+    "historical_recipe_metric_matches": 5,
+    "chosen": "reference",
+    "report": "reports/CYCLE5_REBUILD_RESULTS.md",
+    "backup_filename": "mallorn-cycle5-rebuilt-complete-20261008.zip",
+    "backup_sha256": "c37286dfbd79eb21942c1d58d42c4a88f6b16ebcc497a3f3ecf84a3914c874dd",
+    "backup_bytes": 137727849
   }
 }

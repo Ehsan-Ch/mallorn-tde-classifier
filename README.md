@@ -29,7 +29,7 @@ not replaced the selected recipe. [Results](reports/cycle4_20261004/RESULTS.md) 
 
 **Kaggle notebook:** [Saved version 2](https://www.kaggle.com/code/ehsan1993/mallorn-reproducible-tde-research?scriptVersionId=355572876) (private in the owner account; synthetic check completed successfully in 66.4 seconds). [Self-contained source notebook](notebooks/mallorn_research.ipynb), including a synthetic software check and opt-in official training. [Publication checkpoint](docs/PUBLICATION_CHECKPOINT.md).
 
-**Recovery note:** A runtime rollback removed the original cycle-5 model files. The modeling method has been reconstructed and tested in a separate namespace; its previously reported results are explicitly marked as historical session records. [Recovery details](reports/RECOVERY_20261005.md) · [Recovered method](docs/FIFTH_CYCLE_RECOVERY.md).
+**Cycle-5 rebuild completed, 8 October 2026:** all 20 fold checkpoints were rebuilt (60 final LightGBM models), with exact saved-prediction replay. All five recipes match the historical F1/AP/repeat metrics to six decimal places. The acceptance gates retained the reference recipe. [Rebuild results](reports/CYCLE5_REBUILD_RESULTS.md). The lost original files were not recovered byte-for-byte. [Recovery details](reports/RECOVERY_20261005.md) · [Recovered method](docs/FIFTH_CYCLE_RECOVERY.md).
 
 ## What this project demonstrates
 
