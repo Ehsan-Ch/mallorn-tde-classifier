@@ -1,10 +1,12 @@
 # Verification and experiment status
 
-Publication update, 5 October 2026: source and aggregate reports are being
-released to GitHub and a Kaggle code notebook. Earlier statements that publishing
-was paused describe the research cycles at their completion. See
-[publication checkpoint](../docs/PUBLICATION_CHECKPOINT.md) and
-[workspace recovery limitations](RECOVERY_20261005.md).
+Status reviewed 8 October 2026. Source and aggregate reports are published on
+GitHub. Kaggle notebook version 2 completed its synthetic checks; it remains
+private and official-data training is disabled by default. The cycle-5 rebuild
+is complete, as documented in the existing public rebuild report.
+See [rebuild results](CYCLE5_REBUILD_RESULTS.md) and the
+[publication record](../docs/PUBLICATION_CHECKPOINT.md). Private model files and
+training data are not included in the public repository.
 
 ## Official-data evaluation completed
 
@@ -14,11 +16,11 @@ The user supplied the official 43-file competition archive. The first fixed nest
 
 Input inspection required explicit handling of missing flux and a negative photometric redshift before training. Every object was retained. This was the first completed model experiment; loader failures occurred before fitting. No test labels, pseudo-labels, mirrored data or competitor feature tables were used.
 
-## Unpublished improvement cycle
+## Improvement cycle and late submission
 
 The subsequent cycle evaluated 29 model configurations and 443 fixed model/ensemble recipes using 2,282 development objects. The selected recipe reached development F1 **0.6912**, then scored **0.5833** on the 761-object reserved audit with its threshold fixed. **The ~0.68 target was not confirmed.** The audit was reserved for this cycle, but the baseline had already used all training labels. [Full report](improvement_20261003/RESULTS.md).
 
-The new cycle adds GP/thermal and flare features, auxiliary class supervision, and feature selection confined to training folds. One user-authorized late submission on 4 October 2026 scored private F1 **0.6648** and public F1 **0.6825**. No new GitHub publication occurred. [Verified Kaggle result](kaggle_20261004/RESULTS.md).
+The new cycle adds GP/thermal and flare features, auxiliary class supervision, and feature selection confined to training folds. One user-authorized late submission on 4 October 2026 scored private F1 **0.6648** and public F1 **0.6825**. The source and aggregate results were subsequently published on 5–7 October 2026. [Verified Kaggle result](kaggle_20261004/RESULTS.md).
 
 ## Second-cycle candidate
 
@@ -36,12 +38,21 @@ See [cycle 3](cycle3_20261004/RESULTS.md) and [cycle 4](cycle4_20261004/RESULTS.
 
 The worker now checkpoints models and fold predictions atomically, verifies
 hashes and validation IDs on resume, rejects duplicate workers, and records
-failures. An hourly scheduled continuation check is enabled, subject to usage,
-tool and workspace availability. It cannot detect an exact token-reset event or
+failures. An hourly continuation check was configured during the earlier research; its
+current scheduling state is not established by this repository. It cannot detect an exact token-reset event or
 guarantee workspace persistence. [Continuation instructions](../docs/RESUME_RESEARCH.md).
-The user's current instruction pauses all GitHub and Kaggle uploads.
+Code publication was subsequently authorized and completed. No further
+competition submission has been made; the recorded private F1 remains 0.6648.
 
-## Current software verification
+## Review verification — 8 October 2026
+
+Repository links and Python syntax were checked during the GitHub maintenance
+review. No model, feature, threshold, training protocol or checkpoint-hashed
+source was changed. The full suite could not be reverified in the restored
+runtime: the test process exited with a native-library bus error before
+reporting results. The earlier verification evidence below remains historical.
+
+## Historical software verification
 
 The baseline had 40 passing tests and one optional skip. **The last complete local suite passed all 47 unit/integration tests, including CatBoost**, in the earlier compatible runtime. Added tests cover physical parameter recovery and date-translation invariance. The archived [baseline software verification](software_validation.json) remains unchanged. In the refreshed restricted runtime, eight new checkpoint tests cover the restartable workflow; the full suite was not rerun because native CatBoost is unavailable. See [current continuation verification](cycle3_20261004/software_verification.json).
 
@@ -56,3 +67,4 @@ LightGBM, native CatBoost and the optional hybrid test are verified locally. Cat
 - Neural pretraining, SALT2 and echo-state models are not implemented. GP and approximate physical fitting have now been evaluated, without confirming the target on the reserved audit.
 - This cycle's audit is now open and must not be reused as independent confirmation of further tuning.
 - Kaggle private F1 is 0.6648, below the winner's 0.6824. Beating top performers has not been demonstrated; this was a late submission, not an official placement.
+

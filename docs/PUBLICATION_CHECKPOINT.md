@@ -51,3 +51,11 @@ and unuploaded model artifacts cannot be guaranteed across workspace resets.
 - All five default code cells completed; feature extraction, synthetic LightGBM fit, exact saved-model replay and prediction schema checks passed. Official data training stayed disabled.
 - Version 1 failed during ensurepip bootstrap; version 2 supersedes it. No extra notebook or competition submission was created.
 - Publication is complete. Resume by checking remote state; do not repeat uploads. Original cycle-5 trained artifacts remain unavailable.
+
+
+## Subsequent cycle-5 rebuild — 8 October 2026
+
+The original binaries remain unavailable, but rebuilding is complete. See the
+existing public [rebuild results](../reports/CYCLE5_REBUILD_RESULTS.md).
+This does not change Kaggle version 2: that saved notebook is the earlier
+source snapshot and has not received the rebuilt private model files.
